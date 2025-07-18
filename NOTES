@@ -1,0 +1,108 @@
+<?php
+include "dbconfig.php";
+if (isset($_POST['submit'])) {
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $grade = $_POST['grade'];
+    $gender = $_POST['gender'];
+    $dob = $_POST['dob'];
+    $hobby = $_POST['hobby'];
+    $email = $_POST['email'];
+    $hobbies = implode(",", $hobby);
+
+    $filename = $_FILES["picture"]["name"];
+    $tempname = $_FILES["picture"]["tmp_name"];
+    $folder = "./image/" . $filename;
+
+    $sql1 = "INSERT INTO `students` (`id`,`name`, `gender`, `hobby`, `grade`, `dob`, `email`,`student_picture`)  VALUES ('$id','$name','$gender','$hobbies','$grade','$dob','$email','$filename')";
+    $result = mysqli_query($conn, $sql1); 
+    
+    if ($result === TRUE){
+        echo " Record inserted successfully";
+        if ($filename != "") {
+            move_uploaded_file($tempname, $folder);
+        }
+    } 
+    else {
+        echo "Error:" . $sql1 . "<br>" . $conn->error;
+    } 
+
+   
+
+}
+// get => not secure , it is visible on url
+// post => secure 
+?>
+
+!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CRUD</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+     <div class=" " id="editbtn" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title">Edit Student</h5>
+                        <button class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+
+                    <div class="modal-body bg-dark text-white">
+                        
+             
+
+                        <form>
+                            <div class="mb-3">
+                                <label>Student Name</label>
+                                <input class="form-control mb-3" type="text" placeholder="Rahul" id="studentName">
+                            </div>
+                            <div class="mb-3">
+                                <label>Roll Number</label>
+                                <input class="form-control mb-3" type="number" placeholder="101" id="studentRoll">
+                            </div>
+
+                            <div class="mb-3">
+                                <labeL>Grade</labeL>
+                                <input class="form-control mb-3" type="text" placeholder="5" id="studentGrade">
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label d-block">Gender</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="studentGender" id="genderMale"
+                                        value="Male" checked>
+                                    <label class="form-check-label" for="genderMale">Male</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="studentGender" id="genderFemale"
+                                        value="Female">
+                                    <label class="form-check-label" for="genderFemale">Female</label>
+                                </div>
+
+                            </div>
+
+                            <div class="mb-3">
+                                <label>DOB</label>
+                                <input class="form-control mb-3" type="date" id="studentDOB" value="2001-05-17">
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-success" type="button" onclick="editButton()">Submit</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
