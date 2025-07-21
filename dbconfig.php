@@ -1,4 +1,4 @@
-<?php
+<?php                                 // For connecting to Databases
     $servername = "localhost";
     $username = "root";
     $password = "";

@@ -81,10 +81,8 @@
                             </button>
                             <!-- <button class="btn btn-outline-warning btn-sm me-2" data-bs-toggle="modal"
                                     data-bs-target="#editbtn"><i class="ri-edit-2-line"></i></button> -->
-                                    <a href="editbtn.php?id=<?php echo $row['id']; ?>" class="btn btn-outline-warning btn-sm me-2" >Edit</a>
-                            <button class="btn btn-outline-danger btn-sm" onclick="deleteButton()">
-                                <i class="ri-delete-bin-line"></i>
-                            </button>
+                                    <a href="editbtn.php?id=<?php echo $row['id']; ?>"  class="btn btn-outline-warning btn-sm me-2" >Edit</a>
+                                     <a href="delete.php?id=<?php echo $row['id']; ?>" class="btn  btn-outline-danger btn-sm" action="POST">Delete</a>
                         </td>
                     </tr>
                 <?php
@@ -116,13 +114,13 @@
                             <div class="mb-3">
                                 <label class="form-label d-block">Gender </label>
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="genderMale"
+                                    <input class="form-check-input" type="radio" name="genderMale" id="genderMale"
                                         value="Male" checked>
                                     <label class="form-check-label" for="genderMale">Male </label>
                                 </div>
 
                                 <div class="form-check form-check-inline">
-                                    <input class="form-check-input" type="radio" name="gender" id="genderFemale"
+                                    <input class="form-check-input" type="radio" name="genderMale" id="genderFemale"
                                         value="Female">
                                     <label class="form-check-label" for="genderFemale">Female</label>
                                 </div>

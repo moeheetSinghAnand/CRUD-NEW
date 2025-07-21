@@ -1,4 +1,4 @@
-<?php include 'dbconfig.php';?>
+<?php include 'student_curd.php';?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,7 +29,7 @@
             <div class="col-md-6">
                 
                     <h2 class="mb-3 fw-bold text-center">Edit Student</h2>
-                <form id="editForm" method="post" action="update.php">
+                <form id="editForm" method="post" action="update.php" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="<?= $_GET['id']?>"/>
                     <div class="mb-3">
                         <label for="studentName" class="form-label">Student Name</label>
@@ -51,16 +51,16 @@
                     </div>
 
                     <div class="mb-3">
-                              <?php if ($result['gender'] == 'Male' ) { ?>
+                              
                     
                         <label class="form-label d-block">Gender</label>
                         <div class="form-check form-check-inline">
                             
-                            <input class="form-check-input" type="radio" name="gender[]" id="genderMale" value=""  <?= 'checked'; }  else{?>>
+                            <input class="form-check-input me=3" type="radio" name="gender" id="genderMale" value="genderMale"  <?php  if ($result['gender'] == 'Male' ) { echo 'checked'; } ?>>
                             <label class="form-check-label" for="genderMale">Male</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="gender[]" id="genderFemale" value="" <?= 'checked';} ?>>
+                            <input class="form-check-input" type="radio" name="gender" id="genderFemale" value="genderFemale" <?php  if ($result['gender'] == 'Female') {  echo 'not checked'; } ?>>
                             <label class="form-check-label" for="genderFemale">Female</label>
                         </div>
                     </div>
@@ -97,7 +97,8 @@
                         <input class="form-control form-control-sm" type="date" id="studentDOB" name="dob" value="<?= $result['dob']?>">
                     </div>
                     
-                    <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="d-flex justify-content-between align-items-cente
+                    r mb-4">
                         <div class="me-2">
                             <input class="form-control"type="file" placeholder="" id="studentPicture" name="picture">
                         </div>
